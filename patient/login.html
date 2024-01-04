@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="../assets/img/icon.png" rel="icon">
+     <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        body{
+            font-family: 'Roboto';
+            background: url(../assets/img/medicine-blue-background-flat-lay.jpg);
+        
+        }
+        .inner-row{
+            height: 100vh;
+        }
+        .primaryBg{
+            background: rgba(141,194,111,1)
+        }
+        .priamryColor{
+            color: rgba(141,194,111,1);
+        }
+        .form-box{
+            background: #fff;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2),0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        }
+    </style>
+
+</head>
+<body>
+
+  <a href="../home.html" class="previous"><span style="font-size:30px; justify-content: center;"><b>&#8249;</b></span></a>
+  
+
+    <div class="container">
+      <div class="d-flex justify-content-center align-items-center vh-10 ">
+        <h1 style="color:rgb(33, 62, 156);font-size: 50px;" class="fw-bold">Login as a Patient</h1>
+    </div>
+        <div class="row justify-content-center align-items-center inner-row">
+            <div class="col-lg-5 col-md-7">
+                <div class="form-box login-form p-md-5 p-3" style="border-radius: 1rem; margin-bottom: 250px;">
+                    <div class="form-title">
+                        <h2 class="fw-bold mb-3">Login</h2>
+                    </div>
+
+                    <form method="post" action="login_patient.php">
+                      <div class="form-floating mb-3">
+                        <input type="email" class="form-control form-control-sm" placeholder="Email" id="email" name="email" style="border-radius: 1rem;">
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control form-control-sm" placeholder="Password" id="password" name="password" style="border-radius: 1rem;">
+                        <label for="password">Password</label>
+                    </div>
+                    
+                        
+                        <div class="mt-3">
+                          <button class="btn btn-primary" type="submit"  name="login">Login</button>
+                      </div>
+                      
+                    </form>
+                    <div class="mt-3">
+                        <span>Don't have an account?</span> <a href="register.html" class="btn-primary">Sign Up</a>
+                    </div>
+                </div>
+                
+                
+                
+            </div>
+
+        </div>
+    </div>
+
+
+    <footer id="footer">
+
+        
+    
+      <div class="container d-md-flex py-4">
+  
+        <div class="me-md-auto text-center text-md-start" style="display: flex; align-items: center;">
+          <div class="copyright">
+            &copy; Copyright <strong><span>MyHealth</span></strong>. All Rights Reserved
+          </div>
+          <div style="display: inline-block; margin-left: 860px;">
+            Need Help ? <a href="mailto:myhealth@gmail.com">Contact us</a>
+          </div>
+        </div>
+        
+        </div>
+      </div>
+    </footer><!-- End Footer -->
+  
+  
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

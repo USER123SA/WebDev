@@ -1,0 +1,38 @@
+-  Admin/(dossier):
+
+    &- index.php        (pour la page d'accueil de l'administrateur :Vérification de l'état de connexion de l'administrateur)
+   &-login_admin.php   
+   &- patients.php
+    -logout.php
+   -information.php
+
+- patient/(dossier):
+
+     -login.html
+     -register.html
+     -editprofile.php  (interface pour  modification du profile, suppression , deconnection)
+     -editprofile-info-saved.php  (interface afficher apres la modification du profile)
+    &-login_patient.php ( code php pour login et signup)
+    &- gestionRendezVous_pat  (reservez un rendez-vous)
+    &- profile_pat.php(code php pour modiffication et supprission du profile )
+     -logout.php
+
+    -takedate.php (interface pour prendre rendez-vous)
+    -liste_rdv.php (interface afficher les rendez-vous et tu peux l'effacer)
+
+- Docteur/(dossier) :
+
+     -login.html
+     -register.html
+     -Editprofile.php  (interface pour  modification du profile, suppression , deconnection)
+     -editprofile-info-saved.php  (interface afficher apres la modification du profile)
+    & -login_medecin.php   (code php pour login et signup medecin)
+    &- gestion_rendez-vous_med.php
+    &- profile_med.php (code php pour modiffication et supprission du profile )
+     -logout.php
+
+*************************
+id : 1
+nom :admin
+password :pfa2024
+email :admin.pfa2024@gmail.com
