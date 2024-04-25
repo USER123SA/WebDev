@@ -44,18 +44,50 @@
           </li>
         </ul>
       </div>
-     
-</div>
-</nav>
-<br>
-<br>
-
- <div class="container">
-    <div>
-    <center><h3>Bienvenue au panel d'administration gestion des rendez_vous </h3></center>
     </div>
+  </nav>
+  <br><br><br>
+<div class="container">
+  <h2 style="text-align:center">Liste des RDV</h2>
+  <a href="" class="btn btn-primary">Nouveau Rendez-vous</a>
+ <?php
+    require_once "../config/config.php";
+    // Préparer la requête SQL pour sélectionner les rendez-vous du patient
+    $sql = "SELECT * from rendez_vous";
 
- </div>
+    // Exécuter la requête SQL
+    $result = mysqli_query($db, $sql);
+
+    if($result){
+        // Afficher les rendez-vous du patient
+        echo "<table class='table'>";
+        echo "<tr>";
+        echo "<th>ID RDV</th>";
+        echo "<th>Date RDV</th>";
+        //echo "<th>Heure RDV</th>";
+        echo "<th>État RDV</th>";
+        echo "<th>Actions</th>";
+
+        echo "</tr>";
+
+        while($row2 = mysqli_fetch_assoc($result)){
+            echo "<tr>";
+            echo "<td>" . $row2['id_rdv'] . "</td>";
+            echo "<td>" . $row2['date_RDV'] . "</td>";
+           // echo "<td>" . $row['heure_RDV'] . "</td>";
+            echo "<td>" . $row2['etat_rdv'] . "</td>";
+            echo "<td>";
+            echo "<a href='editRDV.php?id=" .$row2['id_rdv'] . "' class='btn btn-warning'>Modifier</a>"; 
+            echo "<a href='deleteRDV.php?id=" . $row2['id_rdv'] . "' class='btn btn-danger' >Supprimer</a>";
+            echo "</td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+
+    }
+?>
+
+</div>
 
 </body>
 

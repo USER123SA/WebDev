@@ -8,34 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <style type="text/css">
-        body{
-            font-family: 'Roboto';
-            background: lightblue;
-        
-        }
-        .inner-row{
-            height: 100vh;
-        }
-        .primaryBg{
-            background: rgba(141,194,111,1)
-        }
-        .priamryColor{
-            color: rgba(141,194,111,1);
-        }
-        .form-box{
-            background: #fff;
-            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2),0 5px 5px 0 rgba(0, 0, 0, 0.24);
-        }
-        h1 {
-         position: relative;
-         top: 50px; /* Change the value to adjust the position */
-        }
-    </style>
-
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -53,7 +26,7 @@
       </div>
     </div>
   </nav>
-    <div class="d-flex justify-content-center align-items-center vh-40 ">
+    <div class="d-flex justify-content-center align-items-center vh-40">
         <h1 class="fw-bold mb-3">Log in as a doctor/therapist</h1>
     </div>
     <div class="container">
@@ -65,42 +38,37 @@
                     </div>
                     <form method="post" action="login_medecin.php">
                         <div class="form-floating mb-3">
-                            <input type="email" class ="form-control form-control-sm" placeholder="Email" id="floatingInput" name="T3">
+                            <input type="email" class="form-control form-control-sm" placeholder="Email" id="floatingInput" name="T3">
                             <label for="floatingInput">Email</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class ="form-control form-control-sm" placeholder="Password" id="floatingPassword" name="T4">
+                            <input type="password" class="form-control form-control-sm" placeholder="Password" id="floatingPassword" name="T4">
                             <label for="floatingPassword">Password</label>
                         </div>
                         
                         <div class="mt-3">
-                            <button type="submit" class="btn btn-primary" href="Edit profile.php" name="login" >Login</button>
+                            <button type="submit" class="btn btn-primary" name="login">Login</button>
                         </div> 
                     </form>
                     <div class="mt-3">
                         <span>Don't have an account?</span> <a href="register.html" class="btn-primary">Sign Up</a>
                     </div>
                 </div>
-                
-                
-                
             </div>
-
         </div>
     </div>
 
-
-    <footer class="bg-dark text-light py-3 ">
+    <footer class="bg-dark text-light py-3">
         <div class="container">
           <div class="row justify-content-center align-items-center">
             <div class="col-12 text-center">
-              <p>&copy; 2023 My Website</p>
+              <p>&copy; 2023 GestionRDV</p>
             </div>
           </div>
         </div>
-      </footer>
+    </footer>
       
-      <div class="bg-secondary py-3">
+    <div class="bg-secondary py-3">
         <div class="container">
           <div class="row justify-content-center align-items-center">
             <div class="col-12 col-md-8 col-lg-6 text-center">
@@ -108,12 +76,9 @@
             </div>
           </div>
         </div>
-      </div>
-
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </body>
 </html>

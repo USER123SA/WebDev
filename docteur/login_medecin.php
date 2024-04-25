@@ -1,97 +1,48 @@
-<?
-extract($_POST);
-mysql_connect('localhost','root','');
-mysql_select_db('render_vousdb');
+
+<?php
+// connexion base du donnée
+
+include '../config/config.php';
 
 
+// Vérifier si le formulaire de connexion a été soumis
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Récupérer les données du formulaire
+    $email = $_POST["T3"];
+    $mot_de_passe = $_POST["T4"];
 
-session_start();
+    // Requête SQL pour récupérer l'administrateur avec le login correspondant
+    $sql = "SELECT * FROM `médecin` WHERE `email_med` = '$email'";
 
+    // Exécuter la requête
+    $resultat = $db->query($sql);
 
-
-
-
-
-if(isset($_POST['login'])) {
-
-$req="select * from medecin where(email='$T3' or password='$T4');";
-$res=mysql_query($req) or die("problem ");
-
-if(mysql_num_rows($res)==0){
-$error = "Email or Password is invalid";
-echo "<script>
-                alert('$error');
-                window.location.href = 'login.html';
-            </script>";
-}else{
-
-
-//extratire d'autre info de la bd pour utilser dans d'autre pages
-$req_med = "SELECT * FROM medecin WHERE email='$T3';";
-    $res_med =mysql_query($req_med) or die("problem2 ");
-    if (mysql_num_rows($res_med) > 0) {
-    $med = mysql_fetch_array($res_med);  }
-
-
-
-// utilser pour ne peut acceder a des pages sans connections et pour utiliser ces variables en tant que connecté
-$_SESSION['user_type'] ='medecin';
-$_SESSION['med_id']=$med['id'];
-$_SESSION['med_nom']=$med['nom'];
-$_SESSION['med_prenom']=$med['prenom'];
-$_SESSION['med_email'] =$T3;
-$_SESSION['med_password'] =$T4;
-$_SESSION['med_adress']=$med['adress'];
-$_SESSION['med_specialite']=$med['specialite'];
-$_SESSION['med_desc']=$med['description'];
-      
-header("Location: Editprofile.php");
-      exit;}
-  }
+    // Vérifier si le login existe dans la base de données
+    if ($resultat->num_rows > 0) {
+        // Récupérer les données de l'administrateur
+        $row = $resultat->fetch_assoc();
+        
+        // Vérifier si le mot de passe correspond
+        if ($mot_de_passe === $row["mot_de_passe_med"]) {
+            // Authentification réussie
+            echo "Authentification réussie. Bienvenue " . $row["nom_med"];
+        } else {
+            // Mot de passe incorrect
+            echo "Mot de passe incorrect.";
+        }
+    } else {
+        // Login non trouvé dans la base de données
+        echo "Login non trouvé.";
+    }
+}
 
 
 
 
-
-
-if(isset($_POST['signup'])) {
-
-$req="select * from medecin where tel='$T5' or email='$T3';";
-$res=mysql_query($req) or die("problem ");
-
-if(mysql_num_rows($res)!=0){
-$error ="vous etes deja inscrit !";
-echo "<script>
-                alert('$error');
-                window.location.href = 'register.html';
-            </script>";  }
-else{
-	//nom ,prenom,email,password,tel,adress,specialite,desc,dateDip,heureDispo
-	mysql_query("insert into medecin(nom,prenom,email,password,tel,adress,specialite,description,date_inscription)                                                   values('$T1','$T2','$T3','$T4','$T5','$T6','$T7','$T8',NOW());") or die(mysql_error());
-//echo"felicitation vous etes inscrit";
-
-//extratire d'autre info de la bd pour utilser dans d'autre pages
-$req_med = "SELECT * FROM medecin WHERE email='$T3';";
-    $res_med =mysql_query($req_med) or die("problem2 ");
-    if (mysql_num_rows($res_med) > 0) {
-    $med = mysql_fetch_array($res_med);  }
-
-
-
-// utilser pour ne peut acceder a des pages sans connections et pour utiliser ces variables en tant que connecté
-$_SESSION['user_type'] ='medecin';
-$_SESSION['med_nom']=$med['nom'];
-$_SESSION['med_prenom']=$med['prenom'];
-$_SESSION['med_email'] =$T3;
-$_SESSION['med_password'] =$T4;
-$_SESSION['med_adress']=$med['adress'];
-$_SESSION['med_specialite']=$med['specialite'];
-$_SESSION['med_desc']=$med['description'];
-
-	header("Location: Editprofile.php");
+header("Location: gestion_rendez-vous_med.php");
       exit;
+  
+  
 
-}
-}
 
 ?>

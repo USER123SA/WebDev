@@ -284,7 +284,7 @@ body {
     color: #2c4964;
     white-space: nowrap;
     transition: 0.3s;
-    border-bottom: 2px solid #fff;
+    border-bottom: 0px solid #fff;
     padding: 5px 2px;
   }
   

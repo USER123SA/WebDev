@@ -1,96 +1,41 @@
-<?
-extract($_POST);
-mysql_connect('localhost','root','');
-mysql_select_db('render_vousdb');
-
-
-
+<?php
 session_start();
-$error='';
-
-if(isset($_POST['login'])) {
-
-$req="select * from patient where (email='$email' or password='$password');";
-$res=mysql_query($req) or die("problem ");
-
-if(mysql_num_rows($res)==0){
-   
-$error = "Email or Password is invalid";
-echo "<script>
-                alert('$error');
-                window.location.href = 'login.html';
-            </script>";
-}else{
+// Connexion à la base de données
+include '../config/config.php';
 
 
-    
-           
-//extratire d'autre info de la bd pour utilser dans d'autre pages
-$req_pat = "SELECT * FROM patient WHERE email='$email';";
-    $res_pat =mysql_query($req_pat) or die("problem2 ");
-    if (mysql_num_rows($res_pat) > 0) {
-    $pat = mysql_fetch_array($res_pat);  }
+// Vérifier si le formulaire de connexion a été soumis
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Récupérer les données du formulaire
+    $email = $_POST["email"];
+    $mot_de_passe = $_POST["password"];
 
+    // Requête SQL pour récupérer le patient avec l'e-mail correspondant
+    $sql = "SELECT * FROM `patient` WHERE `email_pat` = '$email'";
 
+    // Exécuter la requête
+    $resultat = $db->query($sql);
 
-// utilser pour ne peut acceder a des pages sans connections et pour utiliser ces variables en tant que connecté
-$_SESSION['user_type'] ='patient';
-$_SESSION['pat_nom']=$pat['nom'];
-$_SESSION['pat_prenom']=$pat['prenom'];
-$_SESSION['pat_email'] =$email;
-$_SESSION['pat_password'] =$password;
-$_SESSION['pat_tel']=$pat['tel'];
-$_SESSION['pat_id']=$pat['id'];
-
-header("Location: editprofile.php");
-      exit;
-
-
-}
-  }
-
-
-
-if(isset($_POST['signup'])) {
-
-$req="select * from patient where tel='$T5' or email='$T3';";
-$res=mysql_query($req) or die("problem ");
-
-if(mysql_num_rows($res)!=0){
-$error ="vous etes deja inscrit !";
-echo "<script>
-                alert('$error');
-                window.location.href = 'register.html';
-            </script>";}
-
-else{
-
-	//nom,prenom,email,passworld,tel
-	mysql_query("insert into patient (nom,prenom,email,password,tel,date_inscription) values('$T1','$T2','$T3','$T4','$T5',NOW());") or die(mysql_error());
-//echo"felicitation vous etes inscrit et ajouter avec notre patients";
-
-      //extratire d'autre info de la bd pour utilser dans d'autre pages
-$req_pat = "SELECT * FROM patient WHERE email='$T3';";
-    $res_pat =mysql_query($req_pat) or die("problem2 ");
-    if (mysql_num_rows($res_pat) > 0) {
-    $pat = mysql_fetch_array($res_pat);  }
-
-
-
-// utilser pour ne peut acceder a des pages sans connections et pour utiliser ces variables en tant que connecté
-$_SESSION['user_type'] ='patient';
-$_SESSION['pat_nom']=$pat['nom'];
-$_SESSION['pat_prenom']=$pat['prenom'];
-$_SESSION['pat_email'] =$T3;
-$_SESSION['pat_password'] =$T4;
-$_SESSION['pat_tel']=$pat['tel'];
-$_SESSION['pat_id']=$pat['id'];
-
-header("Location: editprofile.php");
-      exit;
-
-}
+    // Vérifier si l'e-mail existe dans la base de données
+    if ($resultat->num_rows > 0) {
+        // Récupérer les données du patient
+        $row = $resultat->fetch_assoc();
+        
+        // Vérifier si le mot de passe correspond
+        if ($mot_de_passe === $row["mot_de_passe_pat"]) {
+            // Authentification réussie
+            // Vous pouvez rediriger l'utilisateur vers une page sécurisée ou afficher un message de bienvenue ici
+            header('Location:liste_rdv.php');
+        } else {
+            // Mot de passe incorrect
+            echo "Mot de passe incorrect.";
+        }
+    } else {
+        // E-mail non trouvé dans la base de données
+        echo "Adresse e-mail non trouvée.";
+    }
 }
 
-
+// Fermer la connexion
+$db->close();
 ?>

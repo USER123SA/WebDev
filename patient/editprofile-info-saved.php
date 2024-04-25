@@ -1,43 +1,37 @@
 <?php
 
-extract($_POST);
-mysql_connect('localhost','root','');
-mysql_select_db('render_vousdb');
+
 
 
 
 session_start();
-//verifier la connexion
-if (!isset($_SESSION['pat_email'])) {
-        header('Location: login.html');
-        exit;
-    }
+include '../config/config.php';
 
-$em=$_SESSION['pat_email'];
+//$em=$_SESSION['email'];
 
 
 //extratire d'autre info de la bd apres mise a jour  pour utilser dans d'autre pages
 
-$req_pat = "SELECT * FROM patient WHERE email='$em';";
-    $res_pat =mysql_query($req_pat) or die("problem2 ");
-    if (mysql_num_rows($res_pat) > 0) {
-    $pat = mysql_fetch_array($res_pat);  }
+$req_pat = "SELECT * FROM patient ";
+    $res_pat =mysqli_query($db,$req_pat) or die("problem2 ");
+    if (mysqli_num_rows($res_pat) > 0) {
+    $pat = mysqli_fetch_array($res_pat);  }
 
-$_SESSION['pat_nom']=$pat['nom'];
-$_SESSION['pat_prenom']=$pat['prenom'];
+$_SESSION['pat_nom']=$pat['nom_pat'];
+$_SESSION['pat_prenom']=$pat['prenom_pat'];
 
 
 ?>
 
 
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
     <style type="text/css">
         body {
          background-color: #f0f0f0;
@@ -82,7 +76,7 @@ $_SESSION['pat_prenom']=$pat['prenom'];
     </div>
   </nav>
     <div class="logo-container">
-        <img src="checked.png" alt="Checked Logo">
+        
       </div>
       <h1>your informations are updated!<br>  Bienvenue <? echo $_SESSION['pat_nom'];   ?>   <? echo $_SESSION['pat_prenom'];   ?></h1>
 
@@ -93,25 +87,26 @@ $_SESSION['pat_prenom']=$pat['prenom'];
   </form>
 
 
-
-      <footer class="bg-dark text-light py-3 ">
-        <div class="container">
-          <div class="row justify-content-center align-items-center">
-            <div class="col-12 text-center">
-              <p>&copy; 2023 My Website</p>
-            </div>
-          </div>
-        </div>
-      </footer>
-      
-      <div class="bg-secondary py-3">
-        <div class="container">
-          <div class="row justify-content-center align-items-center">
-            <div class="col-12 col-md-8 col-lg-6 text-center">
-              <p class="mb-0 text-light">Besoin d'aide ? Contactez-nous</p>
-            </div>
+  <footer class="bg-dark text-light py-3 ">
+      <div class="container">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-12 text-center">
+            <p>&copy; 2024 Gestion_RDV</p>
+            
           </div>
         </div>
       </div>
+    </footer>
+    
+   
+      
+      <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

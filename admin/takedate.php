@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,13 +18,17 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
     integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
     crossorigin="anonymous"></script>
-
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+    integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+    crossorigin="anonymous"></script>
 </head>
 
 <body>
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-      <a class="navbar-brand fs-3 fw-bold" href="information.php">HomePage</a>
+      <a class="navbar-brand fs-3 fw-bold" href="../home.php">HomePage</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -31,31 +36,44 @@
       <div class="collapse navbar-collapse " id="navbarNavDropdown">
         <ul class="navbar-nav ms-auto fs-5">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="medecin.php">Médecins_listes</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="patients.php">Patients_listes</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="liste_rdv.php">Rendez_vous</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="logout.php">Logout</a>
+            <a class="nav-link active" aria-current="page" href="../home.php">Home</a>
           </li>
         </ul>
       </div>
-     
-</div>
-</nav>
-<br>
-<br>
-
- <div class="container">
-    <div>
-    <center><h3>Bienvenue au panel d'administration gestion des rendez_vous </h3></center>
     </div>
+  </nav>
 
- </div>
+
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <form class="border p-3" method="post" action="gestionRendezVous_pat.php">
+
+          <div class="mb-3">
+
+            <label for="name">Nom du Docteur:</label>
+            <input type="text" id="name" name="T1" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="date" class="form-label">Select a date:</label>
+            <input type="date" id="date" name="T2" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="time" class="form-label">Select a time:</label>
+            <input type="time" id="time" name="T3" class="form-control" step="3600">
+          </div>
+          <button type="submit" class="btn btn-primary" name="ajouter_rdv">Submit</button>
+        </form>
+
+
+        <form action="liste_rdv.php">
+          <button type="submit">Listes des rendez-vous</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
 
 </body>
 

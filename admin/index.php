@@ -1,24 +1,14 @@
 <?
-
+session_start();
 
 //connexin a la base:
-extract($_POST);
-mysql_connect('localhost','root','');
-mysql_select_db('render_vousdb');
+include '../config/config.php';
 
 
 // Vérification de l'état de connexion de l'administrateur
-    session_start();
-    if (!isset($_SESSION['id_admin'])) {
+    
+    if (!isset($_SESSION['id'])) {
         header('Location: login.html');
         exit;
     }
-
-
-    
-
-
-
-
-
 ?>

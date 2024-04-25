@@ -1,45 +1,46 @@
-<?
-extract($_POST);
-mysql_connect('localhost','root','');
-mysql_select_db('render_vousdb');
+<?php
+// connexion base du donnée
+
+include '../config/config.php';
+
+
+// Vérifier si le formulaire de connexion a été soumis
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Récupérer les données du formulaire
+    $login = $_POST["login"];
+    $mot_de_passe = $_POST["mot_de_passe"];
+
+    // Requête SQL pour récupérer l'administrateur avec le login correspondant
+    $sql = "SELECT * FROM `admin` WHERE `login` = '$login'";
+
+    // Exécuter la requête
+    $resultat = $db->query($sql);
+
+    // Vérifier si le login existe dans la base de données
+    if ($resultat->num_rows > 0) {
+        // Récupérer les données de l'administrateur
+        $row = $resultat->fetch_assoc();
+        
+        // Vérifier si le mot de passe correspond
+        if ($mot_de_passe === $row["password"]) {
+            // Authentification réussie
+            echo "Authentification réussie. Bienvenue " . $row["login"];
+        } else {
+            // Mot de passe incorrect
+            echo "Mot de passe incorrect.";
+        }
+    } else {
+        // Login non trouvé dans la base de données
+        echo "Login non trouvé.";
+    }
+}
 
 
 
-session_start();
-
-
-if(isset($_POST['login'])) {
-$req="select * from admin where(email='$T1' and password='$T2');";
-$res=mysql_query($req) or die("problem ");
-
-if(mysql_num_rows($res)==0){
-	
-$error = "Email or Password is invalid";
-echo "<script>
-                alert('$error');
-                window.location.href = 'login.html';
-            </script>";
-   }
-else{
-
-//extratire d'autre info de la bd pour utilser dans d'autre pages
-$req= "SELECT * FROM admin WHERE email='$T1';";
-    $res =mysql_query($req) or die("problem2 ");
-    if (mysql_num_rows($res) > 0) {
-    $adm = mysql_fetch_array($res);  }
-
-
-
-// utilser pour ne peut acceder a des pages sans connections et pour utiliser ces variables en tant que connecté
-$_SESSION['user_type'] ='admin';
-$_SESSION['id_admin']='1';
-$_SESSION['adm_nom']=$adm['nom'];
-$_SESSION['adm_email'] =$T1;
-$_SESSION['adm_password'] =$T2;
 
 header("Location: information.php");
-      exit;}
-  }
+      exit;
+  
   
 
 

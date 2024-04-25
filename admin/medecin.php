@@ -44,18 +44,66 @@
           </li>
         </ul>
       </div>
-     
-</div>
-</nav>
-<br>
-<br>
-
- <div class="container">
-    <div>
-    <center><h3>Bienvenue au panel d'administration gestion des rendez_vous </h3></center>
     </div>
+  </nav>
+  <br>
+  <br>
+  <br>
 
- </div>
+<br>
+  <br>
+  <br>
+<div class="container">
+  <h2 style="text-align:center">Liste des médecins</h2>
+  <a href="../docteur/register.html" class="btn btn-primary">Nouveau Médecin</a>
+  <?php
+// Inclure le fichier de configuration de la base de données
+require_once "../config/config.php";
+
+// Récupérer la liste des patients depuis la base de données
+$sql1 = "SELECT * FROM médecin";
+$result1 = mysqli_query($db, $sql1);
+
+// Vérifier s'il y a des patients dans la base de données
+if (mysqli_num_rows($result1) > 0) {
+    echo "<table class='table'>";
+    echo "<thead>";
+    echo "<tr>";
+    echo "<th>ID</th>";
+    echo "<th>Nom</th>";
+    echo "<th>EMAIL</th>";
+    echo "<th>MOT DE PASSE</th>";
+    echo "<th>Action</th>";
+    echo "</tr>";
+    echo "</thead>";
+    echo "<tbody>";
+
+    // Afficher les données des médecins
+    while ($row1 = mysqli_fetch_assoc($result1)) {
+        echo "<tr>";
+        echo "<td>" . $row1['idmedecin'] . "</td>";
+        echo "<td>" . $row1['nom_med'] . "</td>";
+        echo "<td>" . $row1['email_med'] . "</td>";
+        echo "<td>" . $row1['mot_de_passe_med'] . "</td>";
+        echo "<td>";
+        echo "<a href='editMedecin.php?id=" .$row1['idmedecin'] . "' class='btn btn-warning'>Modifier</a>"; 
+        echo "<a href='deleteMedecin.php?id=" . $row1['idmedecin'] . "' class='btn btn-danger' >Supprimer</a>";
+        echo "</td>";
+        echo "</tr>";
+    }
+    echo "</tbody>";
+    echo "</table>";
+} else {
+    echo "Aucun médecin trouvé.";
+}
+
+
+?>
+</div>
+<br>
+  <br>
+  <br>
+
 
 </body>
 
